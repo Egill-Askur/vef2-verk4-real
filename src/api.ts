@@ -60,7 +60,7 @@ export class QuestionsApi {
 
     return response;
   }
-
+  /*
   async getQuestions(
     categorySlug: string,
   ): Promise<Paginated<Question> | null> {
@@ -75,4 +75,5 @@ export class QuestionsApi {
   async breytaFlokk(categorySlug: string, title: string): Promise<Paginated<Question> | null> {
 
   }
+  */
 }

@@ -1,6 +1,6 @@
 import React, { JSX } from 'react';
 import { Question as QuestionType } from '../../types';
-import { stringify } from 'querystring';
+//import { stringify } from 'querystring';
 
 export function Question({
   question,
@@ -8,7 +8,7 @@ export function Question({
   question: QuestionType;
 }): JSX.Element {
   const [answerId, setAnswerId] = React.useState<number | null>(null);
-  let [showAnswers, setShowAnswers] = React.useState<boolean>(false);
+  const [showAnswers, setShowAnswers] = React.useState<boolean>(false);
 
   //let showAnswers = false;
 
