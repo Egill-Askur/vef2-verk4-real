@@ -22,6 +22,7 @@ export function Category({ slug }: { slug: string }): JSX.Element {
 
       if (response.data.length === 0) {
         setUiState('empty');
+        console.log("Empty")
       } else {
         setUiState('data');
         setQuestions(response.data);
@@ -36,7 +37,7 @@ export function Category({ slug }: { slug: string }): JSX.Element {
     case 'error':
       return <p>Villa við að sækja gögn</p>;
     case 'empty':
-      return <p>Engin gögn fundust</p>;
+      return <p>Engar spurningar tengdar við þennan flokk</p>;
     case 'data':
       return (
         <div>

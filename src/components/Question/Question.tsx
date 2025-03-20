@@ -1,5 +1,6 @@
 import React, { JSX } from 'react';
 import { Question as QuestionType } from '../../types';
+import { stringify } from 'querystring';
 
 export function Question({
   question,
@@ -7,9 +8,13 @@ export function Question({
   question: QuestionType;
 }): JSX.Element {
   const [answerId, setAnswerId] = React.useState<number | null>(null);
+  let [showAnswers, setShowAnswers] = React.useState<boolean>(false);
+
+  //let showAnswers = false;
 
   const onSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowAnswers(true);
     console.log('submit, valið svar:', answerId);
   };
 
@@ -19,21 +24,25 @@ export function Question({
       <form onSubmit={onSubmit}>
         <ul>
           {question.answers.map((answer) => {
-            const isCorrect = answerId === answer.id && answer.correct;
+            const isCorrect = answer.correct ? answerId === answer.id : answerId !== answer.id;
             return (
               <li key={answer.id}>
                 <input
                   type="radio"
                   name="answer"
                   value={answer.id}
-                  onChange={() => setAnswerId(answer.id)}
+                  onChange={() => showAnswers ? null : setAnswerId(answer.id)}
                 />
-                {answer.text}—{isCorrect ? 'RÉTT' : 'RANGT'}
+                {answer.text}{showAnswers ? isCorrect ? ' - RÉTT' : ' - RANGT': ''}
+                {/*answer.text*/}
+                {/*showAnswers ? stringify({isCorrect: isCorrect ? 'a' : 'b'}) : ''*/}
               </li>
             );
           })}
         </ul>
-        <button>Svara</button>
+        <button>
+          Svara
+        </button>
       </form>
     </div>
   );
